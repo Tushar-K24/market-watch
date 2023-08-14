@@ -11,23 +11,33 @@ const generateQueryString = (symbolsList) => {
   return queryString.substring(0, queryString.length - 1);
 };
 
+const symbolsMap = new Map();
+
 const SymbolsContextProvider = ({ children }) => {
   const [subscribedSymbols, setSubscribedSymbols] = useState([]);
   const [wssUrl, setWssUrl] = useState(
     `${wssBaseUrl}/stream?streams=${generateQueryString(subscribedSymbols)}`
   );
+
   useEffect(() => {
     const newUrl = `${wssBaseUrl}/stream?streams=${generateQueryString(
       subscribedSymbols
     )}`;
     setWssUrl(newUrl);
-    // console.log("from symbolsContext: " + newUrl);
+    if (subscribedSymbols.length) {
+      symbolsMap.set(
+        subscribedSymbols[subscribedSymbols.length - 1],
+        subscribedSymbols.length - 1
+      );
+    }
+    console.log("from symbolsContext: " + newUrl);
   }, [subscribedSymbols]);
 
   return (
     <SymbolsContext.Provider
       value={{
         subscribedSymbols: subscribedSymbols,
+        symbolsMap: symbolsMap,
         wssUrl: wssUrl,
         setSubscribedSymbols: setSubscribedSymbols,
       }}

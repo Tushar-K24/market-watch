@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import "./App.css";
 import SubscribedTable from "./Components/subscribedTable/subscribedTable";
 import { useEffect } from "react";
@@ -8,6 +8,7 @@ import { SymbolsContext } from "./Contexts/symbolsContext";
 function App() {
   const [allSymbols, setAllSymbols] = useState([]);
   const [symbolName, setSymbolName] = useState("");
+  const tableRef = useRef(null);
   const { subscribedSymbols, setSubscribedSymbols } =
     useContext(SymbolsContext);
 
@@ -54,7 +55,7 @@ function App() {
             </button>
           </div>
         </div>
-        <SubscribedTable />
+        <SubscribedTable ref={tableRef} />
       </div>
     </div>
   );
