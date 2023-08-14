@@ -10,14 +10,6 @@ const SymbolRow = ({ symbol }) => {
   let ws;
   const [bid, setBid] = useState();
   const [ask, setAsk] = useState();
-  const handlePing = () => {
-    // Send a pong frame in response to the server's ping
-    console.log(`handling ping for ${symbol}`);
-    if (ws) {
-      ws.send(JSON.stringify({ pong: new Date().getTime() }));
-      console.log("ws existence confirmed, and ping sent");
-    }
-  };
 
   useEffect(() => {
     // Establish WebSocket connection
@@ -43,12 +35,7 @@ const SymbolRow = ({ symbol }) => {
       console.error("WebSocket error:", error);
     };
 
-    // Send a pong frame every 3 minutes (180000 milliseconds)
-    const pingInterval = setInterval(handlePing, 180000);
-
-    // Clean up the WebSocket connection and ping interval on unmount
     return () => {
-      clearInterval(pingInterval);
       if (ws) {
         ws.close();
       }

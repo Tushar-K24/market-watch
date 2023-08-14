@@ -21,7 +21,7 @@ const SymbolsContextProvider = ({ children }) => {
       subscribedSymbols
     )}`;
     setWssUrl(newUrl);
-    console.log("from symbolsContext: " + newUrl);
+    // console.log("from symbolsContext: " + newUrl);
   }, [subscribedSymbols]);
 
   return (
