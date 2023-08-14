@@ -91,10 +91,10 @@ function SubscribedTable({}, ref) {
           {subscribedSymbols.map((symbol, index) => (
             <tr key={symbol} id={symbol}>
               <td className="symbol-name">
-                <strong>{symbol}</strong>
+                <strong>{symbol.toUpperCase()}</strong>
               </td>
-              <td className="bid-price"></td>
-              <td className="ask-price"></td>
+              <td className="bid-price">-</td>
+              <td className="ask-price">-</td>
             </tr>
           ))}
         </tbody>
