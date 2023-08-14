@@ -49,6 +49,9 @@ const SymbolRow = ({ symbol }) => {
     // Clean up the WebSocket connection and ping interval on unmount
     return () => {
       clearInterval(pingInterval);
+      if (ws) {
+        ws.close();
+      }
     };
   }, []);
 
