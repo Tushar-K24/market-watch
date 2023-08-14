@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import "./App.css";
-import SubscribedTable from "./Components/subscribedTabe/subscribedTable";
+import SubscribedTable from "./Components/subscribedTable/subscribedTable";
 import { useEffect } from "react";
 import { baseUrl } from "./config";
 import { SymbolsContext } from "./Contexts/symbolsContext";
